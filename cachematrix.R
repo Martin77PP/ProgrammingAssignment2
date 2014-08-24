@@ -1,7 +1,13 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## I will do it for the next assignment... I promise!! :-)
+# makeCacheMatrix is a function that take as argument a square matrix, in this 
+# function:
+# set is a function that stores in the cache the matrix (argument of makeCacheMatrix) 
+# and initialize in the cache the value s of solve(matrix);
+# get get the matrix; 
+# setSolve apply the function solve (inverse of the square matrix) and stores 
+# in the cache the value s of solve(matrix);
+# getSolve get the value s of solve(matrix);
+# finally the MakeCachematrix create a list with 4 elements containing the 
+# functions: set, get, setSolve and getSolve.
 
 makeCacheMatrix <- function(x = matrix()) {
     s <- NULL
@@ -20,7 +26,15 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## I hope this too...
+## cacheSolve is a function that take as argument the value of makeCacheMatrix,
+## to s is assigned the value stored in getSolve,
+## the if loop check if the value is null, if not it print the message 
+## "getting cached data" and return the value s stored inth cache by getSolve 
+## and end the caheSolve function;
+## if s is null to data is passed the matrix makeCacheMatrix$get, to s is 
+## assigned the value of solve(matrix) and then is passed the value s to setSolve 
+## that will store it in the cache, finally s is returned
+## 
 
 cacheSolve <- function(x, ...) {
     s <- x$getSolve()
@@ -31,14 +45,14 @@ cacheSolve <- function(x, ...) {
     data <- x$get()
     s <- solve(data, ...)
     x$setSolve(s)
-    s
-        ## Return a matrix that is the inverse of 'x'
+    s     ## Return a matrix that is the inverse of 'x'
 }
 
-mtrx1 <- matrix(1:4, 2)
-mCMx1 <- makeCacheMatrix(mtrx1) 
-inv1 <- cacheSolve(mCMx1)
-test1 <- mtrx1 %*% inv1
+mtrx1 <- matrix(1:4, 2)                 # make a square matrix
+mCMx1 <- makeCacheMatrix(mtrx1)         # assign the makeCaheMatrix value
+inv1 <- cacheSolve(mCMx1)               # assign to inv1 the cahesolve valu 
+test1 <- mtrx1 %*% inv1                 # check if the value of inv1 is the inverse of mtrx1
+
 mtrx2 <- matrix(8:11, 2)
 mCMx2 <- makeCacheMatrix(mtrx2)
 inv2 <- cacheSolve(mCMx2)
